@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var url_base = 'http://157.230.17.132:3016/todos';
+  var url_base = 'http://157.230.17.132:3016/todos/';
   display_list()
 
 
@@ -26,24 +26,6 @@ $(document).ready(function() {
 
   }); //onclick add item closing
 
-  $('.delete').click(function() {
-
-    console.log('cliccato');
-    // var item_to_delete = $('span').attr('data-id')
-    // console.log(item_to_delete)
-    // $.ajax({
-    //   url: url_base,
-    //   type: 'DELETE',
-    //   success: function() {
-    //     display_list();
-    //   },
-    //   error:function(){
-    //     alert('errore chiamata api')
-    //   }
-    // }) //chiusura ajax
-  });
-
-
 
 
   function display_list() {
@@ -53,22 +35,60 @@ $(document).ready(function() {
       type: 'GET',
       success: function(data) {
         for (var i = 0; i < data.length; i++) {
+
           var source = document.getElementById("entry-template").innerHTML;
           var template = Handlebars.compile(source);
           var context = {
             item: data[i].text,
-            id: [i]
+            id: data[i].id
 
           };
           var html = template(context);
           $('.body').append(html)
-
           $('#newTodo').val('')
-        }
+        }//chiusura ciclo for
+        $('.delete').click(function() {
+
+
+          var item_to_delete = $(this).attr('data-id');
+          $.ajax({
+            url: url_base + item_to_delete,
+            type: 'DELETE',
+            success: function() {
+              $('.body').html('');
+              display_list();
+            },
+            error:function(){
+              alert('errore chiamata api')
+            }
+          }) //chiusura ajax
+        }); //chiusura delete
+        $('.edit').click(function() {
+
+
+          var item_to_edit = $(this).attr('data-id');
+          var new_edit = prompt("modifica campo");
+          $.ajax({
+            url: url_base + item_to_edit,
+            type: 'PUT',
+            data: {
+              text: new_edit
+            },
+            success: function() {
+              $('.body').html('');
+              display_list();
+            },
+            error:function(){
+              alert('errore chiamata api')
+            }
+          }) //chiusura ajax
+        });
       },
       error: function() {
         alert('errore chiamata api')
       }
+
     }) //chiusura ajax
+
   } // chiusura funzione display_list
 }); // fine document ready

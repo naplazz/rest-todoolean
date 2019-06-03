@@ -20,6 +20,7 @@
     <ul class="body"></ul>
 
 
+
   </div> <!-- fine to do container -->
   <!-- Optional JavaScript -->
 
@@ -27,7 +28,10 @@
   <script id="entry-template" type="text/x-handlebars-template">
 
 
-      <li>{{item}} <span class='delete' data-id="{{id}}"> X</span></li>
+      <li>{{item}}
+        <button class="delete" data-id="{{id}}" type="button" name="button">Elimina</button>
+        <button class="edit" data-id="{{id}}" type="button" name="button">Edit</button>
+      </li>
 
 
 </script>
