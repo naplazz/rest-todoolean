@@ -7,3 +7,55 @@
 .delete {
   cursor: pointer;
 }
+table {
+  margin: auto;
+width: 50%;
+border: 1px solid gray
+}
+
+th {
+  border: 1px solid gray
+}
+ td {
+   border: 0.5px solid lightgray;
+ }
+h1 {
+  background: #800202;
+color: white;
+}
+body {
+    background: lavender;
+}
+.input {
+  border: 1px solid black;
+width: 50%;
+margin: auto;
+padding: 13px;
+background: bisque;
+}
+#newTodo {
+  width: 70%;
+    height: 35px;
+}
+.time {
+
+  height: 32px;
+background: cornflowerblue;
+color: white;
+}
+#todoBtn{
+  height: 32px;
+width: 12%;
+}
+
+#tHeader{
+
+  height: 34px;
+background: teal;
+color: white;
+}
+
+tr {
+  height: 25px;
+  background-color: white;
+}

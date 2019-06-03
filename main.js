@@ -1,20 +1,22 @@
 $(document).ready(function() {
-
+/// creo la variabile mostra url e mostra lista
   var url_base = 'http://157.230.17.132:3016/todos/';
   display_list()
+//  fine creo la variabile mostra url e mostra lista
 
-
-
+/// al click
   $('#todoBtn').click(function() {
     var input_val = $('#newTodo').val();
+    var input_time = $('.time').val()
     $.ajax({
       url: url_base,
       type: 'POST',
       data: {
-        text: input_val
+        text: input_val,
+        time: input_time
       },
       success: function() {
-        $('.body').html('');
+        $('.body').find("tr:gt(0)").remove();
         display_list();
 
 
@@ -25,8 +27,6 @@ $(document).ready(function() {
     }) //chiusura ajax
 
   }); //onclick add item closing
-
-
 
   function display_list() {
 
@@ -40,7 +40,8 @@ $(document).ready(function() {
           var template = Handlebars.compile(source);
           var context = {
             item: data[i].text,
-            id: data[i].id
+            id: data[i].id,
+            time:data[i].time
 
           };
           var html = template(context);
@@ -55,7 +56,7 @@ $(document).ready(function() {
             url: url_base + item_to_delete,
             type: 'DELETE',
             success: function() {
-              $('.body').html('');
+              $('.body').find("tr:gt(0)").remove();
               display_list();
             },
             error:function(){
@@ -68,14 +69,17 @@ $(document).ready(function() {
 
           var item_to_edit = $(this).attr('data-id');
           var new_edit = prompt("modifica campo");
+          var new_time = prompt("modifica Orario");
           $.ajax({
             url: url_base + item_to_edit,
             type: 'PUT',
             data: {
-              text: new_edit
+              text: new_edit,
+              time: new_time
+
             },
             success: function() {
-              $('.body').html('');
+              $('.body').find("tr:gt(0)").remove();
               display_list();
             },
             error:function(){

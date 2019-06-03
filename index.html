@@ -15,9 +15,48 @@
 <body>
   <div class="todo-container">
     <h1>My To Do List</h1>
+    <div class="input">
+
+
     <input id='newTodo' type="text" name="" value="" placeholder="inserisci un todo">
+    <select class="time" name="">
+      <option value="1:00">1:00</option>
+      <option value="2:00">2:00</option>
+      <option value="3:00">3:00</option>
+      <option value="4:00">4:00</option>
+      <option value="5:00">5:00</option>
+      <option value="6:00">6:00</option>
+      <option value="7:00">7:00</option>
+      <option value="8:00">8:00</option>
+      <option value="9:00">9:00</option>
+      <option value="10:00">10:00</option>
+      <option value="11:00">11:00</option>
+      <option value="12:00">12:00</option>
+      <option value="13:00">13:00</option>
+      <option value="14:00">14:00</option>
+      <option value="15:00">15:00</option>
+      <option value="16:00">16:00</option>
+      <option value="17:00">17:00</option>
+      <option value="18:00">18:00</option>
+      <option value="19:00">19:00</option>
+      <option value="20:00">20:00</option>
+      <option value="21:00">21:00</option>
+      <option value="22:00">22:00</option>
+      <option value="23:00">23:00</option>
+      <option value="24:00">24:00</option>
+    </select>
     <button id="todoBtn" type="button" name="button">Invia</button>
-    <ul class="body"></ul>
+  </div>
+
+    <table class="body">
+      <tr id='tHeader'>
+        <th>Da fare...</th>
+        <th>Orario</th>
+        <th>Azioni</th>
+      </tr>
+
+
+    </table>
 
 
 
@@ -27,14 +66,18 @@
   <script src="main.js" charset="utf-8"></script>
   <script id="entry-template" type="text/x-handlebars-template">
 
-
-      <li>{{item}}
+    <tr>
+      <td>{{item}}</td>
+      <td> {{time}} </td>
+      <td>
         <button class="delete" data-id="{{id}}" type="button" name="button">Elimina</button>
         <button class="edit" data-id="{{id}}" type="button" name="button">Edit</button>
-      </li>
+      </td>
+    </tr>
 
 
-</script>
+
+  </script>
 </body>
 
 </html>
