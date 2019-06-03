@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="todo-container">
+    <h1>My To Do List</h1>
+    <input id='newTodo' type="text" name="" value="" placeholder="inserisci un todo">
+    <button id="todoBtn" type="button" name="button">Invia</button>
+    <ul class="body"></ul>
+
+
+  </div> <!-- fine to do container -->
+  <!-- Optional JavaScript -->
+
+  <script src="main.js" charset="utf-8"></script>
+  <script id="entry-template" type="text/x-handlebars-template">
+
+
+      <li>{{item}} <span class='delete' data-id="{{id}}"> X</span></li>
+
+
+</script>
+</body>
+
+</html>
