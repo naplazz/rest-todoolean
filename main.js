@@ -1,13 +1,19 @@
 $(document).ready(function() {
-/// creo la variabile mostra url e mostra lista
+  /// creo la variabile mostra url e mostra lista
   var url_base = 'http://157.230.17.132:3016/todos/';
   display_list()
-//  fine creo la variabile mostra url e mostra lista
+  //  fine creo la variabile mostra url e mostra lista
 
-/// al click
+  /// al click
   $('#todoBtn').click(function() {
     var input_val = $('#newTodo').val();
-    var input_time = $('.time').val()
+    var input_time = $('.time').val();
+    if (!input_val) {
+      alert('Inserisci qualcosa')
+    } else {
+
+
+
     $.ajax({
       url: url_base,
       type: 'POST',
@@ -16,6 +22,7 @@ $(document).ready(function() {
         time: input_time
       },
       success: function() {
+
         $('.body').find("tr:gt(0)").remove();
         display_list();
 
@@ -25,7 +32,7 @@ $(document).ready(function() {
         alert('errore chiamata api')
       }
     }) //chiusura ajax
-
+      }
   }); //onclick add item closing
 
   function display_list() {
@@ -41,13 +48,13 @@ $(document).ready(function() {
           var context = {
             item: data[i].text,
             id: data[i].id,
-            time:data[i].time
+            time: data[i].time
 
           };
           var html = template(context);
           $('.body').append(html)
           $('#newTodo').val('')
-        }//chiusura ciclo for
+        } //chiusura ciclo for
         $('.delete').click(function() {
 
 
@@ -59,7 +66,7 @@ $(document).ready(function() {
               $('.body').find("tr:gt(0)").remove();
               display_list();
             },
-            error:function(){
+            error: function() {
               alert('errore chiamata api')
             }
           }) //chiusura ajax
@@ -82,7 +89,7 @@ $(document).ready(function() {
               $('.body').find("tr:gt(0)").remove();
               display_list();
             },
-            error:function(){
+            error: function() {
               alert('errore chiamata api')
             }
           }) //chiusura ajax
@@ -95,4 +102,9 @@ $(document).ready(function() {
     }) //chiusura ajax
 
   } // chiusura funzione display_list
+
+
+  for (var t = 0; t < 24; t++) {
+    $('.time').append('<option value="' + [t] + ':00">alle ore: ' + [t] + ':00</option>')
+  }
 }); // fine document ready
